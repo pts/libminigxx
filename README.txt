@@ -26,12 +26,22 @@ Usage:
 
   $ gcc -m32 -fno-exceptions ... PROG.cc -L. -lminigxx_i386
 
+  Examples:
+
+  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -L. -lminigxx_i386.a && ./a.out
+  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -L. -linigxx_i386.a && ./a.out
+
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
 
 * Alternatively, if you are targeting amd64, run this:
 
   $ gcc -m64 -fno-exceptions ... PROG.cc -L. -lminigxx_amd64
+
+  Examples:
+
+  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -L. -lminigxx_amd64 && ./a.out
+  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -L. -lminigxx_amd64 && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.

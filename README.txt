@@ -34,10 +34,10 @@ Usage:
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
 
-  For gcc-4.4 and gcc-4.8 it worked without -static, but for gcc-6.3 it
-  failed with this error message:
-
-    release.amd64/libminigxx.a(cxa_bad_cast.o): relocation R_X86_64_32 against `.rodata.str1.1' can not be used when making a shared object; recompile with -fPIC
+  Newer versions of gcc (I've found gcc-6.3) may have --enable-default-pie
+  enabled, and they will fail with ``relocation R_X86_64_32'' without
+  -static. The alternative of `gcc -static' is `gcc -no-pie -fno-pic'.
+  `-no-pie' was not present in gcc-4.8.
 
 * Alternatively, if you are targeting amd64, run this:
 
@@ -51,10 +51,10 @@ Usage:
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
 
-  For gcc-4.4 and gcc-4.8 it worked without -static, but for gcc-6.3 it
-  failed with this error message:
-
-    release.amd64/libminigxx.a(cxa_bad_cast.o): relocation R_X86_64_32 against `.rodata.str1.1' can not be used when making a shared object; recompile with -fPIC
+  Newer versions of gcc (I've found gcc-6.3) may have --enable-default-pie
+  enabled, and they will fail with ``relocation R_X86_64_32'' without
+  -static. The alternative of `gcc -static' is `gcc -no-pie -fno-pic'.
+  `-no-pie' was not present in gcc-4.8.
 
 Features:
 
@@ -77,10 +77,14 @@ Troubleshooting:
 
 * If you are getting the error
   ``: undefined reference to `__gxx_personality_v0' '', then specify
-  -fno-exceptions. (libminigxx doesn't support exceptions.)
+  gcc -fno-exceptions. (libminigxx doesn't support exceptions.)
 * If you are getting the error
   ``: undefined reference to `__dynamic_cast' '', then use a compilation
   method which doesn't need minigxx_nortti.cc .
+* If you are getting the error
+  ``: relocation R_X86_64_32S against symbol `_ZTV1D' can not be used when
+  making a shared object; recompile with fPIC'', then specify
+  gcc -no-pie -fno-pic.
 
 TODOs:
 

@@ -18,18 +18,18 @@ Usage:
 * If you don't need RTTI (e.g. dynamic_cast), the easiest way to try
   libminigxx is using minigxx_nortti.c:
 
-  $ gcc -fno-exceptions -no-rtti  ... PROG.cc minigxx_nortti.cc
+  $ gcc -nostdinc++ -fno-exceptions -no-rtti  ... PROG.cc minigxx_nortti.cc
 
   minigxx_nortti.cc works on any architecture.
 
 * Alternatively, if you are targeting i386, run this:
 
-  $ gcc -static -m32 -fno-exceptions ... PROG.cc -Lrelease.i386 -lminigxx
+  $ gcc -static -m32 -nostdinc++ -fno-exceptions ... PROG.cc -Lrelease.i386 -lminigxx
 
   Examples:
 
-  $ gcc -static -m32 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.i386 -lminigxx.a && ./a.out
-  $ gcc -static -m32 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.i386 -linigxx.a && ./a.out
+  $ gcc -static -m32 -s -O2 -W -Wall -Wextra -nostdinc++ -fno-exceptions examples/rtti.cc -Lrelease.i386 -lminigxx.a && ./a.out
+  $ gcc -static -m32 -s -O2 -W -Wall -Wextra -nostdinc++ -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.i386 -linigxx.a && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
@@ -41,12 +41,12 @@ Usage:
 
 * Alternatively, if you are targeting amd64, run this:
 
-  $ gcc -static -m64 -fno-exceptions ... PROG.cc -Lrelease.amd64 -lminigxx
+  $ gcc -static -m64 -nostdinc++ -fno-exceptions ... PROG.cc -Lrelease.amd64 -lminigxx
 
   Examples:
 
-  $ gcc -static -m64 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.amd64 -lminigxx && ./a.out
-  $ gcc -static -m64 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.amd64 -lminigxx && ./a.out
+  $ gcc -static -m64 -s -O2 -W -Wall -Wextra -nostdinc++ -fno-exceptions examples/rtti.cc -Lrelease.amd64 -lminigxx && ./a.out
+  $ gcc -static -m64 -s -O2 -W -Wall -Wextra -nostdinc++ -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.amd64 -lminigxx && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.

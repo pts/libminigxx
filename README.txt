@@ -24,27 +24,37 @@ Usage:
 
 * Alternatively, if you are targeting i386, run this:
 
-  $ gcc -m32 -fno-exceptions ... PROG.cc -Lrelease.i386 -lminigxx
+  $ gcc -static -m32 -fno-exceptions ... PROG.cc -Lrelease.i386 -lminigxx
 
   Examples:
 
-  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.i386 -lminigxx.a && ./a.out
-  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.i386 -linigxx.a && ./a.out
+  $ gcc -static -m32 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.i386 -lminigxx.a && ./a.out
+  $ gcc -static -m32 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.i386 -linigxx.a && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
+
+  For gcc-4.4 and gcc-4.8 it worked without -static, but for gcc-6.3 it
+  failed with this error message:
+
+    release.amd64/libminigxx.a(cxa_bad_cast.o): relocation R_X86_64_32 against `.rodata.str1.1' can not be used when making a shared object; recompile with -fPIC
 
 * Alternatively, if you are targeting amd64, run this:
 
-  $ gcc -m64 -fno-exceptions ... PROG.cc -Lrelease.amd64 -lminigxx
+  $ gcc -static -m64 -fno-exceptions ... PROG.cc -Lrelease.amd64 -lminigxx
 
   Examples:
 
-  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.amd64 -lminigxx && ./a.out
-  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.amd64 -lminigxx && ./a.out
+  $ gcc -static -m64 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.amd64 -lminigxx && ./a.out
+  $ gcc -static -m64 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.amd64 -lminigxx && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
+
+  For gcc-4.4 and gcc-4.8 it worked without -static, but for gcc-6.3 it
+  failed with this error message:
+
+    release.amd64/libminigxx.a(cxa_bad_cast.o): relocation R_X86_64_32 against `.rodata.str1.1' can not be used when making a shared object; recompile with -fPIC
 
 Features:
 

@@ -24,24 +24,24 @@ Usage:
 
 * Alternatively, if you are targeting i386, run this:
 
-  $ gcc -m32 -fno-exceptions ... PROG.cc -L. -lminigxx_i386
+  $ gcc -m32 -fno-exceptions ... PROG.cc -Lrelease.i386 -lminigxx
 
   Examples:
 
-  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -L. -lminigxx_i386.a && ./a.out
-  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -L. -linigxx_i386.a && ./a.out
+  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.i386 -lminigxx.a && ./a.out
+  $ gcc -m32 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.i386 -linigxx.a && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
 
 * Alternatively, if you are targeting amd64, run this:
 
-  $ gcc -m64 -fno-exceptions ... PROG.cc -L. -lminigxx_amd64
+  $ gcc -m64 -fno-exceptions ... PROG.cc -Lrelease.amd64 -lminigxx
 
   Examples:
 
-  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -L. -lminigxx_amd64 && ./a.out
-  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -L. -lminigxx_amd64 && ./a.out
+  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions examples/rtti.cc -Lrelease.amd64 -lminigxx && ./a.out
+  $ gcc -m64 -s -O2 -W -Wall -Wextra -fno-exceptions -fno-rtti examples/nortti.cc -Lrelease.amd64 -lminigxx && ./a.out
 
   Specifying -fno-rtti is optional. dynamic_cast needs RTTI, so don't
   specify -fno-rtti in that case.
